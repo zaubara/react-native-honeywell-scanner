@@ -1,7 +1,7 @@
 {
   "name": "react-native-esb24-honeywell-scanner",
   "title": "React Native Esb24 Honeywell Scanner",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Module for honeywell scanner with enabled EAN13 digit check transmit property",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,8 @@
     "baseUrl": "https://github.com/id-group/esb24-honeywell-scanner.git"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "honeywell"
   ],
   "author": {
     "name": "Andrey Kazantsev",
