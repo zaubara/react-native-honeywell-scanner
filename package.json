@@ -2,7 +2,7 @@
   "name": "react-native-esb24-honeywell-scanner",
   "title": "React Native Esb24 Honeywell Scanner",
   "version": "1.0.2",
-  "description": "TODO",
+  "description": "Module for honeywell scanner with enabled EAN13 digit check transmit property",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
