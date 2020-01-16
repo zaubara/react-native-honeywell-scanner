@@ -1,0 +1,33 @@
+{
+  "name": "react-native-esb24-honeywell-scanner",
+  "title": "React Native Esb24 Honeywell Scanner",
+  "version": "1.0.2",
+  "description": "TODO",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/id-group/esb24-honeywell-scanner.git",
+    "baseUrl": "https://github.com/id-group/esb24-honeywell-scanner.git"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": {
+    "name": "Andrey Kazantsev",
+    "email": "id-group@yandex.ru"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-native": "^0.61.5"
+  },
+  "devDependencies": {
+    "react": "^16.12.0",
+    "react-native": "^0.61.5"
+  }
+}
