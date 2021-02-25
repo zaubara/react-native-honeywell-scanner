@@ -1,6 +1,3 @@
-#Visual Studio
-.vs
-
 # OSX
 #
 .DS_Store
@@ -33,13 +30,22 @@ project.xcworkspace
 
 # Android/IntelliJ
 #
-build/
-.idea
-.gradle
-local.properties
-*.iml
+android/build
+android/.idea
+android/.gradle
+android/local.properties
+android/*.iml
 
 # BUCK
 buck-out/
 \.buckd/
 *.keystore
+
+# VISUAL STUDIO
+.vs
+
+# NPM
+.npmrc
+
+#TSC
+/dist
