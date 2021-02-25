@@ -11,9 +11,9 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.reactlibrary.Esb24HoneywellScannerPackage.HoneyWellTAG;
+import static com.reactlibrary.HoneywellScannerPackage.HoneyWellTAG;
 
-public class Esb24HoneywellScannerModule extends ReactContextBaseJavaModule implements BarcodeReader.BarcodeListener {
+public class HoneywellScannerModule extends ReactContextBaseJavaModule implements BarcodeReader.BarcodeListener {
 
     // Debugging
     private static final boolean D = true;
@@ -25,14 +25,14 @@ public class Esb24HoneywellScannerModule extends ReactContextBaseJavaModule impl
     private static final String BARCODE_READ_SUCCESS = "barcodeReadSuccess";
     private static final String BARCODE_READ_FAIL = "barcodeReadFail";
 
-    public Esb24HoneywellScannerModule(ReactApplicationContext reactContext) {
+    public HoneywellScannerModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
     }
 
     @Override
     public String getName() {
-        return "Esb24HoneywellScanner";
+        return "HoneywellScanner";
     }
 
     /**
@@ -75,7 +75,7 @@ public class Esb24HoneywellScannerModule extends ReactContextBaseJavaModule impl
                 manager = aidcManager;
                 reader = manager.createBarcodeReader();
                 if(reader != null){
-                    reader.addBarcodeListener(Esb24HoneywellScannerModule.this);
+                    reader.addBarcodeListener(HoneywellScannerModule.this);
                     try {
                         reader.claim();
                         reader.setProperty( BarcodeReader.PROPERTY_EAN_13_ENABLED, true );

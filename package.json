@@ -1,33 +1,44 @@
 {
-  "name": "react-native-esb24-honeywell-scanner",
-  "title": "React Native Esb24 Honeywell Scanner",
-  "version": "1.0.4",
-  "description": "Module for honeywell scanner with enabled EAN13 digit check transmit property",
+  "name": "@ami3goltd/react-native-honeywell-scanner",
+  "title": "React Native Honeywell Scanner",
+  "version": "0.0.1",
+  "description": "Module for Honeywell scanner",
   "main": "index.js",
-  "scripts": {
+  "scripts":
+  {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
+  "repository":
+  {
     "type": "git",
-    "url": "git+https://github.com/id-group/esb24-honeywell-scanner.git",
-    "baseUrl": "https://github.com/id-group/esb24-honeywell-scanner.git"
+    "url": "git+https://github.com/AMI3GOLtd/react-native-honeywell-scanner.git",
+    "baseUrl": "https://github.com/AMI3GOLtd/react-native-honeywell-scanner.git"
   },
-  "keywords": [
+  "keywords":
+  [
     "react-native",
     "honeywell"
   ],
-  "author": {
-    "name": "Andrey Kazantsev",
-    "email": "id-group@yandex.ru"
+  "author": "AMI3GO Ltd <enquiry@ami3go.com>",
+  "contributors":
+  [
+    "AMI3GO Ltd <enquiry@ami3go.com> (https://ami3go.com)"
+  ],
+  "bugs":
+  {
+    "url": "https://github.com/AMI3GOLtd/react-native-honeywell-scanner/issues"
   },
+  "homepage": "https://github.com/AMI3GOLtd/react-native-honeywell-scanner#readme",
   "license": "MIT",
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
-  "peerDependencies": {
+  "peerDependencies":
+  {
     "react": "^16.12.0",
     "react-native": "^0.61.5"
   },
-  "devDependencies": {
+  "devDependencies":
+  {
     "react": "^16.12.0",
     "react-native": "^0.61.5"
   }

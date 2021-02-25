@@ -1,22 +1,22 @@
-# react-native-esb24-honeywell-scanner
+# @ami3goltd/react-native-honeywell-scanner
 
-This module is fork of react-native-honeywell-scanner with enabled EAN13 digit check transmit property.
+This module is fork of react-native-honeywell-scanner.
 
 ## Getting started
 
-`$ npm install react-native-esb24-honeywell-scanner --save`
+`$ npm install @ami3goltd/react-native-honeywell-scanner --save`
 
 ## Usage
 ```javascript
-import Esb24HoneywellScanner from 'react-native-esb24-honeywell-scanner';
+import HoneywellScanner from '@ami3goltd/react-native-honeywell-scanner';
 
 ...
 
 useEffect(() => {
-        if( Esb24HoneywellScanner.isCompatible ) {
-            Esb24HoneywellScanner.startReader().then((claimed) => {
+        if( HoneywellScanner.isCompatible ) {
+            HoneywellScanner.startReader().then((claimed) => {
                 console.log(claimed ? 'Barcode reader is claimed' : 'Barcode reader is busy');
-                Esb24HoneywellScanner.onBarcodeReadSuccess(event => {
+                HoneywellScanner.onBarcodeReadSuccess(event => {
                     console.log('Received data', event.data);
                 });
 
@@ -25,9 +25,9 @@ useEffect(() => {
 
             return(
                 () => {
-                    Esb24HoneywellScanner.stopReader().then(() => {
+                    HoneywellScanner.stopReader().then(() => {
                         console.log("Freedom!!");
-                        Esb24HoneywellScanner.offBarcodeReadSuccess();
+                        HoneywellScanner.offBarcodeReadSuccess();
                     });
                 }
             )
