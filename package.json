@@ -1,6 +1,6 @@
 {
-  "name": "@ami3goltd/react-native-honeywell-scanner",
-  "title": "React Native Honeywell Scanner",
+  "name": "react-native-honeywell-scanner-v2",
+  "title": "React Native Honeywell Scanner-v2",
   "version": "0.0.1",
   "description": "Bridge to use the Honeywell scanner",
   "main": "dist/index.js",

@@ -1,14 +1,14 @@
-# @ami3goltd/react-native-honeywell-scanner
+# react-native-honeywell-scanner-v2
 
 This module is fork of react-native-honeywell-scanner.
 
 ## Getting started
 
-`$ npm install @ami3goltd/react-native-honeywell-scanner --save`
+`$ npm install react-native-honeywell-scanner-v2 --save`
 
 ## Usage
 ```javascript
-import HoneywellScanner from '@ami3goltd/react-native-honeywell-scanner';
+import HoneywellScanner from 'react-native-honeywell-scanner-v2';
 
 ...
 
