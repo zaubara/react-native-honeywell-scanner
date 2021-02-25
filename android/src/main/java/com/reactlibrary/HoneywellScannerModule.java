@@ -2,12 +2,14 @@ package com.reactlibrary;
 
 import android.os.Build;
 import android.util.Log;
+
 import com.facebook.react.bridge.*;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.honeywell.aidc.*;
 import com.honeywell.aidc.AidcManager.CreatedCallback;
 
 import javax.annotation.Nullable;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,8 +39,9 @@ public class HoneywellScannerModule extends ReactContextBaseJavaModule implement
 
     /**
      * Send event to javascript
+     *
      * @param eventName Name of the event
-     * @param params Additional params
+     * @param params    Additional params
      */
     private void sendEvent(String eventName, @Nullable WritableMap params) {
         if (reactContext.hasActiveCatalystInstance()) {
@@ -74,12 +77,12 @@ public class HoneywellScannerModule extends ReactContextBaseJavaModule implement
             public void onCreated(AidcManager aidcManager) {
                 manager = aidcManager;
                 reader = manager.createBarcodeReader();
-                if(reader != null){
+                if (reader != null) {
                     reader.addBarcodeListener(HoneywellScannerModule.this);
                     try {
                         reader.claim();
-                        reader.setProperty( BarcodeReader.PROPERTY_EAN_13_ENABLED, true );
-                        reader.setProperty( BarcodeReader.PROPERTY_EAN_13_CHECK_DIGIT_TRANSMIT_ENABLED, true );
+                        reader.setProperty(BarcodeReader.PROPERTY_EAN_8_CHECK_DIGIT_TRANSMIT_ENABLED, true);
+                        reader.setProperty(BarcodeReader.PROPERTY_EAN_13_CHECK_DIGIT_TRANSMIT_ENABLED, true);
                         promise.resolve(true);
                     } catch (ScannerUnavailableException | UnsupportedPropertyException e) {
                         promise.resolve(false);
