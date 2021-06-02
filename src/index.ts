@@ -1,4 +1,4 @@
-import { NativeModules, DeviceEventEmitter } from 'react-native';
+import { NativeModules, NativeEventEmitter } from 'react-native';
 
 const { HoneywellScanner } = NativeModules;
 
@@ -8,17 +8,23 @@ const { HoneywellScanner } = NativeModules;
  * @param  {Function} handler Event handler
  */
 
+const barcodeReaderEmitter = new NativeEventEmitter(HoneywellScanner);
+
 var subscriptionBarcodeReadSuccess = null;
 var subscriptionBarcodeReadFail = null;
 
 HoneywellScanner.onBarcodeReadSuccess = (handler) =>
 {
-    subscriptionBarcodeReadSuccess = DeviceEventEmitter.addListener(HoneywellScanner.BARCODE_READ_SUCCESS, handler)
+    subscriptionBarcodeReadSuccess.remove();
+    subscriptionBarcodeReadSuccess = null;
+    subscriptionBarcodeReadSuccess = barcodeReaderEmitter.addListener(HoneywellScanner.BARCODE_READ_SUCCESS, handler);
 }
 
 HoneywellScanner.onBarcodeReadFail = (handler) =>
 {
-    subscriptionBarcodeReadFail = DeviceEventEmitter.addListener(HoneywellScanner.BARCODE_READ_FAIL, handler)
+    subscriptionBarcodeReadFail.remove();
+    subscriptionBarcodeReadFail = null;
+    subscriptionBarcodeReadFail = barcodeReaderEmitter.addListener(HoneywellScanner.BARCODE_READ_FAIL, handler);
 }
 
 /**
@@ -28,11 +34,11 @@ HoneywellScanner.onBarcodeReadFail = (handler) =>
  */
 HoneywellScanner.offBarcodeReadSuccess = () =>
 {
-    subscriptionBarcodeReadSuccess.remove()
+    subscriptionBarcodeReadSuccess.remove();
 };
 HoneywellScanner.offBarcodeReadFail = () =>
 {
-    subscriptionBarcodeReadFail.remove()
+    subscriptionBarcodeReadFail.remove();
 };
 
 export default HoneywellScanner;
