@@ -4,6 +4,21 @@ def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
 
+def myAttribute = Attribute.of("com.android.build.api.attributes.BuildTypeAttr", String)
+
+dependencies.attributesSchema {
+    // registers this attribute to the attributes schema
+    attribute(myAttribute)
+}
+
+configurations {
+    implementation {
+        attributes {
+            attribute(myAttribute, "release")
+        }
+    }
+}
+
 buildscript {
     // The Android Gradle plugin is only required when opening the android folder stand-alone.
     // This avoids unnecessary downloads and potential conflicts when the library is included as a
@@ -97,7 +112,8 @@ afterEvaluate { project ->
     task androidJavadoc(type: Javadoc) {
         source = android.sourceSets.main.java.srcDirs
         classpath += files(android.bootClasspath)
-        classpath += files(project.getConfigurations().getByName('compile').asList())
+        project.getConfigurations().getByName('implementation').setCanBeResolved(true)
+        classpath += files(project.getConfigurations().getByName('implementation').asList())
         include '**/*.java'
     }
 
