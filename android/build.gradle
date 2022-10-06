@@ -80,6 +80,7 @@ repositories {
 }
 
 dependencies {
+    compile fileTree(dir: "libs", include: ["*.jar"])
     // ref:
     // https://github.com/facebook/react-native/blob/0.61-stable/template/android/app/build.gradle#L192
     //noinspection GradleDynamicVersion
