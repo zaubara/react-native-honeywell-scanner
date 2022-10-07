@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.ami3go.honeywellscannerinterface;
 
 import android.os.Build;
 import android.util.Log;
@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.reactlibrary.HoneywellScannerPackage.HoneyWellTAG;
+import static com.ami3go.honeywellscannerinterface.HoneywellScannerPackage.HoneyWellTAG;
 
 public class HoneywellScannerModule extends ReactContextBaseJavaModule implements BarcodeReader.BarcodeListener {
 

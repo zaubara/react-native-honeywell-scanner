@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.ami3go.honeywellscannerinterface;
 
 import java.util.Arrays;
 import java.util.Collections;
