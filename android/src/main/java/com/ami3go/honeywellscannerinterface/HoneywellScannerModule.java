@@ -138,7 +138,7 @@ public class HoneywellScannerModule extends ReactContextBaseJavaModule implement
                 manager.close();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            promise.reject(e);
         }
         promise.resolve(null);
     }
