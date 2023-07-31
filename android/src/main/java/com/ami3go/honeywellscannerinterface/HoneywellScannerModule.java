@@ -44,7 +44,7 @@ public class HoneywellScannerModule extends ReactContextBaseJavaModule implement
      * @param params    Additional params
      */
     private void sendEvent(String eventName, @Nullable WritableMap params) {
-        if (reactContext.hasActiveCatalystInstance()) {
+        if (reactContext.hasActiveReactInstance()) {
             if (D) Log.d(HoneyWellTAG, "Sending event: " + eventName);
             reactContext
                     .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
@@ -66,12 +66,20 @@ public class HoneywellScannerModule extends ReactContextBaseJavaModule implement
         sendEvent(BARCODE_READ_FAIL, null);
     }
 
+    @ReactMethod
+    public void addListener(String eventName) {
+    }
+
+    @ReactMethod
+    public void removeListeners(Integer count) {
+    }
+
     /*******************************/
     /** Methods Available from JS **/
     /*******************************/
 
     @ReactMethod
-    public void startReader(final Promise promise) {
+    public void startReader(final ReadableMap options, final Promise promise) {
         AidcManager.create(reactContext, new CreatedCallback() {
             @Override
             public void onCreated(AidcManager aidcManager) {
@@ -81,12 +89,35 @@ public class HoneywellScannerModule extends ReactContextBaseJavaModule implement
                     reader.addBarcodeListener(HoneywellScannerModule.this);
                     try {
                         reader.claim();
-                        reader.setProperty(BarcodeReader.PROPERTY_EAN_8_ENABLED, true);
-                        reader.setProperty(BarcodeReader.PROPERTY_EAN_8_CHECK_DIGIT_TRANSMIT_ENABLED, true);
-                        reader.setProperty(BarcodeReader.PROPERTY_EAN_13_ENABLED, true);
-                        reader.setProperty(BarcodeReader.PROPERTY_EAN_13_CHECK_DIGIT_TRANSMIT_ENABLED, true);
-                        reader.setProperty(BarcodeReader.PROPERTY_EAN_13_TWO_CHAR_ADDENDA_ENABLED, true);
-                        reader.setProperty(BarcodeReader.PROPERTY_EAN_13_FIVE_CHAR_ADDENDA_ENABLED, true);
+                        boolean ean8 = options.hasKey("ean8") && options.getBoolean("ean8"); // default false
+                        boolean ean13 = options.hasKey("ean13") && options.getBoolean("ean13");
+                        boolean code128 = !options.hasKey("code128") || options.getBoolean("code128"); // default true
+                        boolean gs1128 = options.hasKey("gs1128") && options.getBoolean("gs1128");
+                        boolean code39 = options.hasKey("code39") && options.getBoolean("code39");
+                        boolean interleaved25 = options.hasKey("interleaved25") && options.getBoolean("interleaved25");
+                        boolean datamatrix = !options.hasKey("datamatrix") || options.getBoolean("datamatrix");
+                        boolean qrcode = !options.hasKey("qrcode") || options.getBoolean("qrcode");
+
+                        reader.setProperty(BarcodeReader.PROPERTY_EAN_8_ENABLED, ean8);
+                        reader.setProperty(BarcodeReader.PROPERTY_EAN_8_CHECK_DIGIT_TRANSMIT_ENABLED, ean8);
+
+                        reader.setProperty(BarcodeReader.PROPERTY_EAN_13_ENABLED, ean13);
+                        reader.setProperty(BarcodeReader.PROPERTY_EAN_13_CHECK_DIGIT_TRANSMIT_ENABLED, ean13);
+                        reader.setProperty(BarcodeReader.PROPERTY_EAN_13_TWO_CHAR_ADDENDA_ENABLED, ean13);
+                        reader.setProperty(BarcodeReader.PROPERTY_EAN_13_FIVE_CHAR_ADDENDA_ENABLED, ean13);
+
+                        reader.setProperty(BarcodeReader.PROPERTY_CODE_128_ENABLED, code128);
+
+                        reader.setProperty(BarcodeReader.PROPERTY_GS1_128_ENABLED, gs1128);
+
+                        reader.setProperty(BarcodeReader.PROPERTY_CODE_39_ENABLED, code39);
+
+                        reader.setProperty(BarcodeReader.PROPERTY_INTERLEAVED_25_ENABLED, interleaved25);
+
+                        reader.setProperty(BarcodeReader.PROPERTY_DATAMATRIX_ENABLED, datamatrix);
+
+                        reader.setProperty(BarcodeReader.PROPERTY_QR_CODE_ENABLED, qrcode);
+
                         promise.resolve(true);
                     } catch (ScannerUnavailableException | UnsupportedPropertyException e) {
                         promise.resolve(false);
@@ -99,11 +130,15 @@ public class HoneywellScannerModule extends ReactContextBaseJavaModule implement
 
     @ReactMethod
     public void stopReader(Promise promise) {
-        if (reader != null) {
-            reader.close();
-        }
-        if (manager != null) {
-            manager.close();
+        try {
+            if (reader != null) {
+                reader.close();
+            }
+            if (manager != null) {
+                manager.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         promise.resolve(null);
     }
