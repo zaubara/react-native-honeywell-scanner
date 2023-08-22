@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_native_1 = require("react-native");
-const { HoneywellScanner } = react_native_1.NativeModules;
+const HoneywellScanner = react_native_1.NativeModules.HoneywellScanner || {};
 /**
  * Listen for available events
  * @param  {String} eventName Name of event one of barcodeReadSuccess, barcodeReadFail
