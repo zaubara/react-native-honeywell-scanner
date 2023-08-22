@@ -1,4 +1,4 @@
-import { NativeModules, NativeEventEmitter } from 'react-native';
+import { NativeModules, NativeEventEmitter, Platform } from 'react-native';
 
 const HoneywellScanner = NativeModules.HoneywellScanner || {};
 
@@ -8,7 +8,7 @@ const HoneywellScanner = NativeModules.HoneywellScanner || {};
  * @param  {Function} handler Event handler
  */
 
-const barcodeReaderEmitter = new NativeEventEmitter(HoneywellScanner);
+const barcodeReaderEmitter = Platform.OS === 'android' ? new NativeEventEmitter(HoneywellScanner) : {};
 
 var subscriptionBarcodeReadSuccess = null;
 var subscriptionBarcodeReadFail = null;
