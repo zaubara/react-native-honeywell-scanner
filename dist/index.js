@@ -7,7 +7,7 @@ const HoneywellScanner = react_native_1.NativeModules.HoneywellScanner || {};
  * @param  {String} eventName Name of event one of barcodeReadSuccess, barcodeReadFail
  * @param  {Function} handler Event handler
  */
-const barcodeReaderEmitter = new react_native_1.NativeEventEmitter(HoneywellScanner);
+const barcodeReaderEmitter = react_native_1.Platform.OS === 'android' ? new react_native_1.NativeEventEmitter(HoneywellScanner) : {};
 var subscriptionBarcodeReadSuccess = null;
 var subscriptionBarcodeReadFail = null;
 HoneywellScanner.onBarcodeReadSuccess = (handler) => {
